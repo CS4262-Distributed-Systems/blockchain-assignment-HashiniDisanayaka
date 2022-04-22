@@ -230,5 +230,29 @@ public final class AssetTransfer implements ContractInterface {
         return response;
     }
 
+    /**
+     * Duplicate Assest.
+     *
+     */
+    @Transaction(intent = Transaction.TYPE.SUBMIT)
+    public Asset DuplicateAsset(final Context ctx, final String assetID, final String newOwner) {
+        ChaincodeStub stub = ctx.getStub();
+
+        if (!AssetExists(ctx, assetID)) {
+            String errorMessage = String.format("Asset %s does not exist, So can not duplicate!", assetID);
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
+        }
+
+        String assetIDduplicated = assetID + "-copy";
+
+        Asset asset = ReadAsset(ctx, assetID);
+
+        Asset AssetDuplicated = new Asset(assetIDduplicated, asset.getColor(), asset.getSize(), newOwner, asset.getAppraisedValue());
+        //Use Genson to convert the Asset into string, sort it alphabetically and serialize it into a json string
+        String sortedJson = genson.serialize(AssetDuplicated);
+        stub.putStringState(assetID, sortedJson);
+        return AssetDuplicated;
+    }
 
 }
