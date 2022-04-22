@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.hyperledger.fabric.samples.assettransfer.AssetTransferTest$DuplicateAsset" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-04-22T09:52:04" hostname="DESKTOP-J19O4K5" time="1.315">
+  <properties/>
+  <testcase name="whenAssetExists()" classname="org.hyperledger.fabric.samples.assettransfer.AssetTransferTest$DuplicateAsset" time="1.292"/>
+  <testcase name="whenAssetDoesNotExist()" classname="org.hyperledger.fabric.samples.assettransfer.AssetTransferTest$DuplicateAsset" time="0.021"/>
+  <system-out><![CDATA[Asset asset1 does not exist, So can not duplicate!
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
